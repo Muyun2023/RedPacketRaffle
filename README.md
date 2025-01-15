@@ -1,9 +1,7 @@
 # RaffleRush
-# 企业红包雨
 
 #### 介绍
 企业红包雨项目
-
 
 #### 本地启动教程
 
@@ -20,7 +18,6 @@
 6·部署nginx，可以本地，可以docker，启动后访问即可参与抽奖
 
 
-
 #### 服务器一键启动（docker-compose）
 
 代码中的deploy文件夹下已经集成了docker-compose一键部署
@@ -32,13 +29,11 @@
 2、服务器上安装了docker及docker-compose
 
 
-
 ##### 1、打包镜像
 
 ====> 到backend下：
 
 执行 mvn clean package docker:build 编译并打包
-
 
 
 ====> 到frontend下：
@@ -48,7 +43,6 @@
 到api下执行 mvn docker:build 打包
 
 到msg下mvn docker:build 打包
-
 
 
 ##### 2、启动并初始化
@@ -62,7 +56,6 @@
 ![image-20240102下午64926541](pic//image-20240102%E4%B8%8B%E5%8D%8864926541.png)
 
 
-
 先用 docker-compose up lottery-mysql lottery-minio 执行一下，启动Mysql和Minio
 
 （1）用客户端工具连上mysql，目前端口是9007，创建prize数据库，导入根目录里的prize_xxxx-xx-xx.sql到prize数据库，用最新的！
@@ -74,36 +67,21 @@
 ![image-20231205下午32314888](pic//image-20231205%E4%B8%8B%E5%8D%8832314888.png)
 
 
-
 重启服务： docker-compose up -d ，将会后台启动全部服务
-
 
 
 ##### 3、访问
 
 minio访问：9005
-
 minio控制台：9006  ， minioadmin /  minioadmin
-
 mysql: 9007
-
 rabbitmq控制台：9008
 rabbitmq消息：9009
-
 redis：9010
-
-
-
 nginx: 9101
-
 api接口：9102 ， /doc.html
-
 管理后台：9103
 
-
-
 其他端口如redis可以自行改为不对外暴露，直接程序走docker-network内链接
-
-
 
 备注：docker-compose里的端口可以根据自己情况修改
