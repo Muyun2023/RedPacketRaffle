@@ -1,26 +1,20 @@
 # RaffleRush
 
-#### 介绍
-企业红包雨项目
-
 #### Local Setup Guide
 
-Prepare Dependencies: Ensure the database, Redis, and RabbitMQ are ready. You can install them manually or use Docker scripts for a containerized setup.
+1. Prepare Dependencies: Ensure the database, Redis, and RabbitMQ are ready. You can install them manually or use Docker scripts for a containerized setup.
 
-Database Initialization:
-
+2. Database Initialization:
 Connect to the database.
 Import the prize.sql script to initialize the database.
-Start Backend: Navigate to the backend directory and run mvn tomcat7:run to start the backend.
+3. Start Backend: Navigate to the backend directory and run mvn tomcat7:run to start the backend.
 
-Start Frontend APIs: Navigate to the frontend directory and start the following Spring Boot applications:
-
+4. Start Frontend APIs: Navigate to the frontend directory and start the following Spring Boot applications:
 API: Use Spring Boot to start the api module.
 Message Service (msg): Use Spring Boot to start the msg module.
 Access Swagger: Visit /doc.html in the API to access the Swagger documentation.
 
-Deploy Nginx: You can set up Nginx either locally or using Docker. After deployment, access the application to participate in the lottery.
-
+5. Deploy Nginx: You can set up Nginx either locally or using Docker. After deployment, access the application to participate in the lottery.
 
 
 
@@ -30,7 +24,6 @@ In the deploy folder of the project, a Docker Compose file is provided for one-c
 
 Prerequisites:
 Prepare the Code:
-
 Copy the packaged code to the server, or clone the repository directly from the server using git clone.
 Install Docker: Ensure the server has Docker and Docker Compose installed.
 
@@ -84,4 +77,5 @@ Redis: Port 9010
 Nginx: Port 9101
 API Interface: Port 9102, visit /doc.html for Swagger documentation
 Admin Panel: Port 9103
+
 Note: Internal services like Redis can be configured to not expose external ports by using Docker's internal networking.
