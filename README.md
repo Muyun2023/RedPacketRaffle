@@ -1,4 +1,5 @@
 # RaffleRush
+Need to follow privacy rules and cannot show all codes here! THX !
 
 #### Local Setup Guide
 
