@@ -1,82 +1,181 @@
-# RaffleRush
+RedPacketRaffle
+
 Due to the confidentiality agreement, the code cannot be fully displayed. Thank you for your understanding!
 
-#### Local Setup Guide
+Local Setup Guide
 
-1. Prepare Dependencies: Ensure the database, Redis, and RabbitMQ are ready. You can install them manually or use Docker scripts for a containerized setup.
+1. Prepare Dependencies
 
-2. Database Initialization:
+Ensure the following services are available:
+
+Database (MySQL)
+
+Redis
+
+RabbitMQ
+
+You can install them manually or use Docker scripts for a containerized setup.
+
+2. Database Initialization
+
 Connect to the database.
+
 Import the prize.sql script to initialize the database.
-3. Start Backend: Navigate to the backend directory and run mvn tomcat7:run to start the backend.
 
-4. Start Frontend APIs: Navigate to the frontend directory and start the following Spring Boot applications:
-API: Use Spring Boot to start the api module.
-Message Service (msg): Use Spring Boot to start the msg module.
-Access Swagger: Visit /doc.html in the API to access the Swagger documentation.
+3. Start Backend
 
-5. Deploy Nginx: You can set up Nginx either locally or using Docker. After deployment, access the application to participate in the lottery.
+Navigate to the backend directory and run:
 
+mvn tomcat7:run
 
+4. Start Frontend APIs
 
-#### Server One-Click Deployment (Using Docker Compose)
+Navigate to the frontend directory and start the following Spring Boot applications:
 
-In the deploy folder of the project, a Docker Compose file is provided for one-click deployment.
+API Module: Start using Spring Boot.
 
-Prerequisites:
-Prepare the Code:
-Copy the packaged code to the server, or clone the repository directly from the server using git clone.
-Install Docker: Ensure the server has Docker and Docker Compose installed.
+Message Service (msg): Start using Spring Boot.
 
-Deployment Steps:
-Build Docker Images:
+Swagger Documentation: Access API documentation at /doc.html.
 
-Navigate to the backend directory:
-Run mvn clean package docker:build to compile and package the backend.
-Navigate to the frontend directory:
-Run mvn clean install -DskipTests for a full build.
-Navigate to the api directory:
-Run mvn docker:build to package the API module.
-Navigate to the msg directory:
-Run mvn docker:build to package the message service.
-Start and Initialize Services:
+5. Deploy Nginx
 
-Navigate to the deploy directory.
+You can set up Nginx either locally or using Docker. Once deployed, access the application to participate in the lottery.
 
-Configuration: Modify only one configuration setting in docker-compose.yml:
+Server One-Click Deployment (Using Docker Compose)
 
-Update the external access address for MinIO with your server's IP address.
+Prerequisites
+
+1. Prepare the Code
+
+Copy the packaged code to the server, or clone the repository directly using:
+
+git clone <repository_url>
+
+2. Install Docker
+
+Ensure the server has Docker and Docker Compose installed.
+
+Deployment Steps
+
+1. Build Docker Images
+
+Run the following commands in respective directories:
+
+Backend:
+
+cd backend
+mvn clean package docker:build
+
+Frontend:
+
+cd frontend
+mvn clean install -DskipTests
+
+API Module:
+
+cd api
+mvn docker:build
+
+Message Service:
+
+cd msg
+mvn docker:build
+
+2. Start and Initialize Services
+
+Modify Configuration
+
+In docker-compose.yml, update the MinIO external access address with your server's IP.
+
 Do not modify other configurations, as they are for Docker's internal networking.
-Start MySQL and MinIO:
-Run docker-compose up lottery-mysql lottery-minio.
 
-Initialize MySQL:
+Start MySQL and MinIO
+
+docker-compose up lottery-mysql lottery-minio
+
+Initialize MySQL
 
 Use a database client to connect to MySQL (default port: 9007).
+
 Create the prize database.
-Import the latest prize_xxxx-xx-xx.sql script into the prize database.
-Initialize MinIO:
+
+Import the latest prize_xxxx-xx-xx.sql script.
+
+Initialize MinIO
 
 Access MinIO Console on port 9006.
+
 Create a bucket named prize.
-In the Buckets -> prize bucket under Anonymous, click "Add Access Rule".
-Set the Prefix to /.
-Set Access to ReadOnly (otherwise, URL access will return 403 errors).
-Restart Services:
-Run docker-compose up -d to start all services in the background.
 
+Navigate to Buckets -> prize, under Anonymous, click Add Access Rule.
 
-##### Access
+Prefix: /
 
-MinIO:
-Console: http://<server-ip>:9006
-Default credentials: minioadmin/minioadmin
-MySQL: Port 9007
-RabbitMQ Console: Port 9008
-RabbitMQ Messaging: Port 9009
-Redis: Port 9010
-Nginx: Port 9101
-API Interface: Port 9102, visit /doc.html for Swagger documentation
-Admin Panel: Port 9103
+Access: ReadOnly (otherwise, URL access will return 403 errors)
 
-Note: Internal services like Redis can be configured to not expose external ports by using Docker's internal networking.
+Restart Services
+
+docker-compose up -d
+
+(This will start all services in the background.)
+
+Access Information
+
+Service
+
+URL / Port
+
+Default Credentials
+
+MinIO Console
+
+http://<server-ip>:9006
+
+minioadmin/minioadmin
+
+MySQL
+
+Port 9007
+
+-
+
+RabbitMQ Console
+
+Port 9008
+
+-
+
+RabbitMQ Messaging
+
+Port 9009
+
+-
+
+Redis
+
+Port 9010
+
+-
+
+Nginx
+
+Port 9101
+
+-
+
+API Interface
+
+Port 9102 (/doc.html for Swagger)
+
+-
+
+Admin Panel
+
+Port 9103
+
+-
+
+Note: Internal services like Redis can be configured to not expose external ports by using Docker’s internal networking.
+
+This guide provides all the necessary steps for local and server deployment. Ensure all configurations are correctly set before running the services.
