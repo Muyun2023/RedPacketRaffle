@@ -1,5 +1,5 @@
 # RaffleRush
-Need to follow privacy rules and cannot show all codes here! THX !
+Due to the confidentiality agreement, the code cannot be fully displayed. Thank you for your understanding!
 
 #### Local Setup Guide
 
