@@ -141,4 +141,6 @@ docker-compose up -d
 
 This guide provides all the necessary steps for local and server deployment. Ensure all configurations are correctly set before running the services.
 
+© Muyun Ji. Confidential and Proprietary. All Rights Reserved.
+
 
